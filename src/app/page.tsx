@@ -165,8 +165,10 @@ export default function Home() {
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 w-4 h-4" />
               <input 
                 type="text" 
-                placeholder="Search market regions..." 
-                className="w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg pl-10 pr-4 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500/50 transition-all text-zinc-900 dark:text-zinc-100"
+                placeholder="Search or enter location..." 
+                value={data.locationName}
+                onChange={(e) => setData({ ...data, locationName: e.target.value })}
+                className="w-full bg-zinc-100 dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg pl-10 pr-4 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500/50 transition-all text-zinc-900 dark:text-zinc-100 shadow-sm"
               />
             </div>
           </div>
