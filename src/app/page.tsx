@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { Sidebar } from '@/components/Sidebar';
 import { KPICards } from '@/components/KPICards';
 import { Charts } from '@/components/Charts';
@@ -44,9 +44,16 @@ export default function Home() {
 
   const results = useMemo(() => calculateAnalytics(data), [data]);
 
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+  }, [isDarkMode]);
+
   const toggleTheme = () => {
     setIsDarkMode(!isDarkMode);
-    document.documentElement.classList.toggle('dark');
   };
 
   const showNotification = (message: string, type: 'success' | 'error' = 'success') => {
@@ -146,7 +153,7 @@ export default function Home() {
   };
 
   return (
-    <div className={`flex h-screen font-sans selection:bg-indigo-500/30 transition-colors duration-300 ${isDarkMode ? 'dark bg-zinc-950 text-zinc-100' : 'bg-white text-zinc-900'}`}>
+    <div className={`flex h-screen font-sans selection:bg-indigo-500/30 transition-colors duration-500 bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-100`}>
       <Sidebar data={data} setData={setData} isDarkMode={isDarkMode} />
       
       <main className="flex-1 flex flex-col overflow-hidden">
@@ -191,7 +198,7 @@ export default function Home() {
         </header>
 
         {/* Dashboard Content */}
-        <div ref={dashboardRef} className="flex-1 overflow-y-auto p-8 space-y-8 custom-scrollbar dashboard-container bg-zinc-50 dark:bg-zinc-950">
+        <div ref={dashboardRef} className="flex-1 overflow-y-auto p-8 space-y-8 custom-scrollbar dashboard-container bg-zinc-50 dark:bg-zinc-950 transition-colors duration-500">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div className="space-y-1">
               <h2 className="text-3xl font-bold text-zinc-900 dark:text-white tracking-tight">Market Analytics</h2>
@@ -203,7 +210,7 @@ export default function Home() {
               <button 
                 onClick={handleExportPDF}
                 disabled={isExporting}
-                className="px-4 py-2 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg text-sm font-medium hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-zinc-900 dark:text-zinc-100"
+                className="px-4 py-2 bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-lg text-sm font-medium hover:bg-zinc-50 dark:hover:bg-zinc-800 transition-colors flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-zinc-900 dark:text-zinc-100 shadow-sm"
               >
                 {isExporting ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
                 {isExporting ? 'Exporting...' : 'Export PDF'}
@@ -225,7 +232,7 @@ export default function Home() {
             </div>
             <div className="space-y-8">
               <AIInsight data={data} results={results} isDarkMode={isDarkMode} />
-              <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 rounded-xl space-y-4 shadow-sm">
+              <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 p-6 rounded-xl space-y-4 shadow-sm transition-colors duration-500">
                 <h3 className="text-zinc-900 dark:text-white font-medium">Strategic Checklist</h3>
                 <ul className="space-y-3">
                   {[
@@ -242,7 +249,7 @@ export default function Home() {
                           </svg>
                         )}
                       </div>
-                      <span className={item.checked ? 'text-zinc-400 dark:text-zinc-500 line-through' : 'text-zinc-600 dark:text-zinc-300'}>{item.text}</span>
+                      <span className={item.checked ? 'text-zinc-400 dark:text-zinc-500 line-through transition-colors' : 'text-zinc-600 dark:text-zinc-300 transition-colors'}>{item.text}</span>
                     </li>
                   ))}
                 </ul>
