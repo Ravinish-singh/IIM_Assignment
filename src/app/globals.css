@@ -1,8 +1,23 @@
 @import "tailwindcss";
 
 :root {
+  --background: #ffffff;
+  --foreground: #09090b;
+  --card: #ffffff;
+  --card-foreground: #09090b;
+  --border: #e4e4e7;
+  --sidebar: #f8fafc;
+  --header: #ffffff;
+}
+
+.dark {
   --background: #09090b;
   --foreground: #fafafa;
+  --card: #18181b;
+  --card-foreground: #fafafa;
+  --border: #27272a;
+  --sidebar: #09090b;
+  --header: #09090b;
 }
 
 body {
@@ -10,6 +25,7 @@ body {
   color: var(--foreground);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 @layer base {

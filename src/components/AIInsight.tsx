@@ -5,9 +5,10 @@ import { Sparkles } from 'lucide-react';
 interface AIInsightProps {
   data: AppData;
   results: AnalyticsResult;
+  isDarkMode?: boolean;
 }
 
-export const AIInsight: React.FC<AIInsightProps> = ({ data, results }) => {
+export const AIInsight: React.FC<AIInsightProps> = ({ data, results, isDarkMode = false }) => {
   const getInsight = () => {
     const viability = results.viabilityScore > 70 ? 'High' : results.viabilityScore > 40 ? 'Moderate' : 'Low';
     const growthNote = data.annualGrowthRate > 2 ? 'strong growth' : 'stable';
@@ -19,12 +20,12 @@ export const AIInsight: React.FC<AIInsightProps> = ({ data, results }) => {
   };
 
   return (
-    <div className="bg-gradient-to-br from-indigo-500/10 to-sky-500/10 border border-indigo-500/20 p-6 rounded-xl space-y-3">
-      <div className="flex items-center gap-2 text-indigo-400 font-semibold">
+    <div className="bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 p-6 rounded-xl space-y-3 shadow-sm">
+      <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-semibold">
         <Sparkles size={18} />
         <span>AI Market Insight</span>
       </div>
-      <p className="text-zinc-300 text-sm leading-relaxed italic">
+      <p className="text-zinc-600 dark:text-zinc-300 text-sm leading-relaxed italic">
         &quot;{getInsight()}&quot;
       </p>
     </div>

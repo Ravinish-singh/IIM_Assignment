@@ -30,7 +30,7 @@ const NEWS_ITEMS = [
   },
 ];
 
-export const BusinessNewsSlider = () => {
+export const BusinessNewsSlider = ({ isDarkMode = false }: { isDarkMode?: boolean }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
@@ -42,12 +42,12 @@ export const BusinessNewsSlider = () => {
   }, []);
 
   return (
-    <div className="bg-indigo-600/10 border-b border-indigo-500/20 h-10 overflow-hidden no-print">
+    <div className="bg-indigo-50 dark:bg-indigo-600/10 border-b border-indigo-100 dark:border-indigo-500/20 h-10 overflow-hidden no-print transition-colors duration-300">
       <div className="max-w-7xl mx-auto h-full px-8 flex items-center">
         <div className="flex items-center gap-2 mr-6 shrink-0">
-          <Newspaper size={16} className="text-indigo-400" />
-          <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-400">Latest News</span>
-          <div className="h-4 w-px bg-indigo-500/30 ml-2" />
+          <Newspaper size={16} className="text-indigo-600 dark:text-indigo-400" />
+          <span className="text-[10px] font-bold uppercase tracking-widest text-indigo-600 dark:text-indigo-400">Latest News</span>
+          <div className="h-4 w-px bg-indigo-200 dark:bg-indigo-500/30 ml-2" />
         </div>
         
         <div className="relative flex-1 h-full overflow-hidden">
@@ -62,11 +62,11 @@ export const BusinessNewsSlider = () => {
                     : 'translate-y-full opacity-0'
               }`}
             >
-              <span className="text-[10px] bg-indigo-500/20 text-indigo-300 px-2 py-0.5 rounded flex items-center gap-1.5 font-medium">
+              <span className="text-[10px] bg-indigo-500/10 dark:bg-indigo-500/20 text-indigo-600 dark:text-indigo-300 px-2 py-0.5 rounded flex items-center gap-1.5 font-medium">
                 {item.icon}
                 {item.tag}
               </span>
-              <p className="text-sm text-zinc-300 font-medium truncate">
+              <p className="text-sm text-zinc-600 dark:text-zinc-300 font-medium truncate">
                 {item.title}
               </p>
             </div>
@@ -78,7 +78,7 @@ export const BusinessNewsSlider = () => {
             <div 
               key={index} 
               className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${
-                index === currentIndex ? 'bg-indigo-500' : 'bg-zinc-800'
+                index === currentIndex ? 'bg-indigo-500' : 'bg-zinc-300 dark:bg-zinc-800'
               }`} 
             />
           ))}
