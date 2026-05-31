@@ -1,0 +1,19 @@
+@import "tailwindcss";
+
+:root {
+  --background: #09090b;
+  --foreground: #fafafa;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer base {
+  input[type="range"] {
+    @apply h-1.5 w-full cursor-pointer appearance-none rounded-lg bg-zinc-800 accent-indigo-500;
+  }
+}
